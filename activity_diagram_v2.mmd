@@ -1,0 +1,33 @@
+flowchart TB
+    classDef default fill:#cfb991,stroke:#000
+    classDef symbol fill:#000,stroke:#000,color:#000
+    classDef term fill:#fff,color:#000
+
+    start((fa:fa-circle)):::symbol --> setup(Attach device to object to be tracked)
+    setup --> on(Turn on)
+    
+    on-->op{ }:::decision
+
+    op-->|Wired Operation| wired("Plug PC into device using USB port")
+    wired-->merge{ }:::decision
+
+    op-->|Wireless Operation| merge{ }
+
+    merge-->zero(Zero the device)
+    zero-->wait(Wait for audible signal confirming zeroed sensors)
+    wait-->break[A]
+
+    %% use `break[A]` to split flowchart into two parts for presentation reasons
+
+    break[A] --> use(Move it around)
+
+    use-->op2{ }:::decision
+
+    op2-->|Wired Operation| merge2{ }:::decision
+
+    op2-->|Wireless Operation| wireless(Connect device to PC using USB)
+    wireless-->dump(Dump data from device to PC)
+    dump-->merge2
+
+    merge2-->End((fa:fa-circle)):::term
+
