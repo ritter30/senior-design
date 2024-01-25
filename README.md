@@ -1,6 +1,14 @@
-# senior-design
- Senior Design Code
+# G.A.I.N.S Team 19
+Cameron Williams \
+Max Ritter \
+Mark Melvin \
+Aidan Leib
 
-# Testing
+## Documentation
 
-## Test 2
+All documentation for the project is located in [`./docs`](./docs/).
+
+Hyperlinks to frequently used:
+
+- [Git Commands Cheat Sheet](./docs/git_cheatsheet.md)
+- etc...
