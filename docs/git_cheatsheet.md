@@ -10,3 +10,10 @@ git pull
 ```bash
 git checkout <branch>
 ```
+
+## Merge Main into Branch
+```bash
+git checkout <branch>
+git fetch origin
+git merge origin/main
+```
