@@ -1,0 +1,15 @@
+@import url("https://use.typekit.net/ghc8hdz.css");
+html {
+  font: acumin-pro, "Franklin Gothic", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: 30pt;
+  font-family: acumin-pro, "Franklin Gothic", sans-serif;
+  color: #8e6f3e;
+}
+
+body {
+  font-family: acumin-pro, "Franklin Gothic", sans-serif;
+  color: #4d4038;
+}/*# sourceMappingURL=typography.css.map */
