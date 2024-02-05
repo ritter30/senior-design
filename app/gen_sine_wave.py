@@ -10,7 +10,9 @@ def gen_sine_wave():
         'sin': sin
     })
 
-    df.to_csv('./data/sine_wave.csv')
+    # df = pd.concat([df, df])
+
+    df.to_csv('./data/sine_wave.csv', index=False)
 
 if __name__ == '__main__':
     gen_sine_wave()
