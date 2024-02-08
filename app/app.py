@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 import plotly.express as px
 import datetime as dt
+import serial
 
 #%%
 # Incorporate Data
@@ -11,6 +12,10 @@ df = pd.read_csv("./data/noise_accel_data.csv", header=None)
 df = df.iloc[:,:3]
 df.columns = ['x_accel', 'y_accel', 'z_accel']
 df.index
+
+ser = serial.Serial('/dev/tty.usbserial-0001', 9600)
+ser_df = pd.DataFrame(columns=['x', 'y','z'])
+ser_df.to_csv('./data/serial.csv')
 
 #%%
 from gen_sine_wave import gen_sine_wave
@@ -46,13 +51,13 @@ app.layout = html.Div([
     html.Div(className='row', children=[
         html.H1('Table'),
         html.Div(className='six columns', children=[
-            dash_table.DataTable(data=sin_df.to_dict('records'), page_size=6),
+            dash_table.DataTable(data=ser_df.to_dict('records'), page_size=6),
         ]),
         html.Div(className='six columns', children=[
             dcc.Graph(figure={}, id='line-chart-final'),
             dcc.Interval(
                 id='live-update',
-                interval=1*100,
+                interval=1*1000,
                 n_intervals=0
             )
         ])
@@ -73,44 +78,60 @@ app.layout = html.Div([
     Input('live-update', 'n_intervals')
 )
 def live_graph(n):
-    chunk = 50
-    sin_df = pd.read_csv('./data/sine_wave.csv')
+    # chunk = 50
+    # sin_df = pd.read_csv('./data/sine_wave.csv')
 
-    sin_iter = iter(sin_df.itertuples(index=True))
+    # sin_iter = iter(sin_df.itertuples(index=True))
 
-    # data = pd.DataFrame(columns=['t','sin'])
+    # # data = pd.DataFrame(columns=['t','sin'])
 
-    time = [None] * chunk
-    sin = [None] * chunk
+    # time = [None] * chunk
+    # sin = [None] * chunk
 
-    for i in range(chunk):
-        try:
-            index, t, value = next(sin_iter)
+    # for i in range(chunk):
+    #     try:
+    #         index, t, value = next(sin_iter)
 
-            # print(t, value)
-            # time[i] = dt.datetime.now().timestamp()
-            time[i] = t + 2*np.pi
-            sin[i] = value
+    #         # print(t, value)
+    #         # time[i] = dt.datetime.now().timestamp()
+    #         time[i] = t + 2*np.pi
+    #         sin[i] = value
 
-            if index == sin_df.shape[0] - 1:
-                sin_iter = iter(sin_df.itertuples(index=True))
+    #         if index == sin_df.shape[0] - 1:
+    #             sin_iter = iter(sin_df.itertuples(index=True))
 
-        except StopIteration:
-            sin_iter = iter(sin_df.itertuples(index=True))
+    #     except StopIteration:
+    #         sin_iter = iter(sin_df.itertuples(index=True))
 
-    data = pd.DataFrame({
-        't': time,
-        'sin': sin
-    })
+    # data = pd.DataFrame({
+    #     't': time,
+    #     'sin': sin
+    # })
 
-    sin_df.iloc[:-chunk,:] = sin_df.iloc[chunk:, :] # slide data to the left
-    sin_df.iloc[-chunk:,:] = data # postfix new data to front
+    # sin_df.iloc[:-chunk,:] = sin_df.iloc[chunk:, :] # slide data to the left
+    # sin_df.iloc[-chunk:,:] = data # postfix new data to front
 
-    sin_df.to_csv('./data/sine_wave.csv', index=False)
+    # sin_df.to_csv('./data/sine_wave.csv', index=False)
+
+    ############# Serial
+
+    try:
+        line = ser.readline().decode().strip()
+
+    except KeyboardInterrupt:
+        ser.close()
+
+    row = np.array(line.split(',')[:-1])
+
+    data = np.genfromtxt('./data/serial.csv', delimiter=',', usemask=True)
+    data = np.append([data, row], axis=0)
+
+    data_df = pd.DataFrame(data)
+    data_df.to_csv('./data/serial.csv', index=False)
 
     fig = {
         'data': [
-            {'x': sin_df['t'], 'y': sin_df['sin'], 'type': 'line', 'name': 'Live Data'}
+            {'x': data_df.iloc[0], 'y': data_df.iloc[1], 'type': 'line', 'name': 'Live Data'}
         ],
         'layout': {
             'margin': {'l': 30, 'r': 20, 'b': 20, 't': 20},
