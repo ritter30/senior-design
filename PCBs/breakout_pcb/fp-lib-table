@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "GAINS_FOOTPRINTS")(type "KiCad")(uri "${KIPRJMOD}/GAINS_FOOTPRINTS.pretty")(options "")(descr ""))
+)
