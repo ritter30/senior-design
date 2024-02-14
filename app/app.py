@@ -23,7 +23,7 @@ from gen_sine_wave import gen_sine_wave
 
 gen_sine_wave()
 
-plot_grand_prix()
+map_df = plot_grand_prix()
 
 #%%
 sin_df = pd.read_csv('./data/sine_wave.csv')
@@ -57,17 +57,19 @@ app.layout = html.Div([
             dash_table.DataTable(data=sin_df.to_dict('records'), page_size=6),
         ]),
         html.H1('Map'),
-        html.Iframe(
-            id='map',
-            srcDoc=open('./data/grand_prix.html', 'r').read(),
-            width='100%',
-            height='600'
-        ),
+        html.Div(className='map', children=[
+            html.Iframe(
+                id='map',
+                srcDoc=open('./data/grand_prix.html', 'r').read(),
+                width='50%',
+                height='600'
+            )
+        ]),
         html.Div(className='six columns', children=[
             dcc.Graph(figure={}, id='line-chart-final'),
             dcc.Interval(
                 id='live-update',
-                interval=1*1000,
+                interval=1*100,
                 n_intervals=0
             )
         ])
@@ -88,7 +90,7 @@ app.layout = html.Div([
     Input('live-update', 'n_intervals')
 )
 def live_graph(n):
-    chunk = 50
+    chunk = 100
     sin_df = pd.read_csv('./data/sine_wave.csv')
 
     sin_iter = iter(sin_df.itertuples(index=True))
@@ -139,16 +141,16 @@ def live_graph(n):
     # data_df = pd.DataFrame(data)
     # data_df.to_csv('./data/serial.csv', index=False)
 
-    # fig = {
-    #     'data': [
-    #         {'x': data_df.iloc[0], 'y': data_df.iloc[1], 'type': 'line', 'name': 'Live Data'}
-    #     ],
-    #     'layout': {
-    #         'margin': {'l': 30, 'r': 20, 'b': 20, 't': 20},
-    #         'xaxis': {'title': 'Time'},
-    #         'yaxis': {'title': 'Sine'}
-    #     }
-    # }
+    fig = {
+        'data': [
+            {'x': sin_df['t'], 'y': sin_df['sin'], 'type': 'line', 'name': 'Live Data'}
+        ],
+        'layout': {
+            'margin': {'l': 30, 'r': 20, 'b': 20, 't': 20},
+            'xaxis': {'title': 'Time'},
+            'yaxis': {'title': 'Sine'}
+        }
+    }
 
     return fig
 

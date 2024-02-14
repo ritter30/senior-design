@@ -54,6 +54,8 @@ def plot_grand_prix():
 
     map_grand_prix.save('./data/grand_prix.html')
 
+    return map_grand_prix
+
 # %%
 if __name__ == '__main__':
     plot_grand_prix()
