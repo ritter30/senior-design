@@ -1,4 +1,5 @@
 import serial
+# import time
 
 def readUART(port, baud):
     # port = '/dev/tty.usbserial-0001'
@@ -7,7 +8,7 @@ def readUART(port, baud):
     ser = serial.Serial(port, baud)
 
     try:
-        line = ser.readline().decode().strip()
+        line = ser.readline().decode()
 
         return line
 
@@ -16,4 +17,5 @@ def readUART(port, baud):
 
 if __name__ == '__main__':
     while True:
-        print(readUART('/dev/tty.usbserial-0001', 9600))
+        print(readUART('/dev/tty.usbserial-A50285BI', 9600))
+        # time.sleep(500)
