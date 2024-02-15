@@ -36,7 +36,7 @@ def plot_grand_prix():
     map_grand_prix = folium.Map(location=avg_location, zoom_start=18)
 
     for stop in df_route_segments.itertuples():
-        print(stop)
+        # print(stop)
         # marker for current stop
         marker = folium.Marker(location=(stop.lat, stop.lon))
         # line for the route segment connecting current to next stop
