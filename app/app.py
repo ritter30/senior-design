@@ -36,7 +36,7 @@ app = Dash(
     assets_ignore='purdue.*'
     )
 
-app.layout = html.Div([
+app.layout = html.Div(style={'backgroundColor': '#000'}, children=[
     html.Div(
         className='app-header',
         children=[
@@ -45,7 +45,7 @@ app.layout = html.Div([
         ],
         style={'textAlign': 'center'}
              ),
-    html.Hr(),
+    # html.Hr(),
     # html.Div(className='row', children=[
     #     dcc.RadioItems(
     #         options=['x_accel', 'y_accel', 'z_accel'], 
@@ -56,33 +56,42 @@ app.layout = html.Div([
     html.Div(className='row', children=[
         html.H1('Table'),
         html.Div(className='six columns', children=[
-            dash_table.DataTable(data=sin_df.to_dict('records'), page_size=6),
-        ]),
-        html.H1('Map'),
+            dash_table.DataTable(data=sin_df.to_dict('records'), 
+                                    columns=[{'id': c, 'name': c} for c in sin_df.columns],
+                                    page_size=10
+                                )
+        ])
+    ]),
+    html.H1('Maps'),
+    html.Div(className='flex', children=[
         html.Div(className='map', children=[
             html.Iframe(
                 id='pu-gp-course',
                 srcDoc=open('./data/grand_prix.html', 'r').read(),
-                width='50%',
+                width='100%',
                 height='600'
             )
-        ]),
+        ], style={'padding': 10, 'flex': 1}),
+
+        html.Br(),
+
         html.Div(className='map', children=[
             html.Iframe(
                 id='my-map',
                 srcDoc=open('./data/my_route.html', 'r').read(),
-                width='50%',
+                width='100%',
                 height='600'
             )
-        ]),
-        html.Div(className='six columns', children=[
-            dcc.Graph(figure={}, id='line-chart-final'),
-            dcc.Interval(
-                id='live-update',
-                interval=1*100,
-                n_intervals=0
-            )
-        ])
+        ], style={'padding': 10, 'flex': 1})
+    ], style={'display': 'flex', 'flexDirection': 'row'}),
+
+    html.Div(className='six columns', children=[
+        dcc.Graph(figure={}, id='line-chart-final'),
+        dcc.Interval(
+            id='live-update',
+            interval=1*100,
+            n_intervals=0
+        )
     ])
 ])
 
