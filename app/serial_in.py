@@ -15,6 +15,11 @@ def readUART(port, baud):
     except KeyboardInterrupt:
         ser.close()
 
+    except UnicodeDecodeError:
+        line = serial.Serial(port, baud)
+
+        return line
+
 def parse_data(data):
     # Split data into individual values
     values = data.decode().split(",")
@@ -52,8 +57,8 @@ if __name__ == '__main__':
     import matplotlib.animation as animation
 
     # Set serial port and baud rate
-    port = "/dev/tty.usbserial-A50285BI"  # Replace with your port
-    baudrate = 9600  # Replace with your baud rate
+    port = "/dev/tty.usbserial-A50285BI"
+    baudrate = 115200
 
     while True:
         print(readUART(port, baudrate))
