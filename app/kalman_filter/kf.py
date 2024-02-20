@@ -94,7 +94,7 @@ if __name__ == '__main__':
     import matplotlib.pyplot as plt
     import numpy as np
 
-    accel = np.loadtxt('/Users/pal/Downloads/stationary_accel_data_raw.csv', delimiter=',')
+    accel = np.loadtxt('/Users/pal/Downloads/downstairs_accel_data_raw.csv', delimiter=',')
 
     DT = 0.01
     DT2 = DT * DT
@@ -130,7 +130,7 @@ if __name__ == '__main__':
         kf.predict(dt=DT)
         if step != 0 and step % MEAS_EVERY_STEPS == 0:
             kf.update(meas_value=meas_x_accel, meas_variance=np.var(x_accel))
-            print(np.var(x_accel))
+            # print(np.var(x_accel))
 
     fig, ax = plt.subplots(2, 1, sharex=True, sharey=True, figsize=(16,9))
 

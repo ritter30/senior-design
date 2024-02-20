@@ -50,26 +50,27 @@ def update(frame):
 if __name__ == '__main__':
     import matplotlib.pyplot as plt
     import matplotlib.animation as animation
-    # while True:
-    #     print(readUART('/dev/tty.usbserial-A50285BI', 9600))
-    #     # time.sleep(500)
 
     # Set serial port and baud rate
     port = "/dev/tty.usbserial-A50285BI"  # Replace with your port
     baudrate = 9600  # Replace with your baud rate
 
-    # Open serial port
-    ser = serial.Serial(port, baudrate)
+    while True:
+        print(readUART(port, baudrate))
+        # time.sleep(500)
 
-    # Initial data and plot setup
-    x_data = []
-    y_data = []
-    z_data = []
+    # # Open serial port
+    # ser = serial.Serial(port, baudrate)
 
-    fig, ax = plt.subplots()
+    # # Initial data and plot setup
+    # x_data = []
+    # y_data = []
+    # z_data = []
 
-    # Animate
-    ani = animation.FuncAnimation(fig, update, interval=100)
+    # fig, ax = plt.subplots()
 
-    # Display plot
-    plt.show()
+    # # Animate
+    # ani = animation.FuncAnimation(fig, update, interval=100)
+
+    # # Display plot
+    # plt.show()
