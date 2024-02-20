@@ -7,6 +7,8 @@ import datetime as dt
 import serial
 from geo_plot import plot_grand_prix
 
+# import xlwings - for read and write files at the same time
+
 #%%
 # Incorporate Data
 df = pd.read_csv("./data/noise_accel_data.csv", header=None)
@@ -59,8 +61,16 @@ app.layout = html.Div([
         html.H1('Map'),
         html.Div(className='map', children=[
             html.Iframe(
-                id='map',
+                id='pu-gp-course',
                 srcDoc=open('./data/grand_prix.html', 'r').read(),
+                width='50%',
+                height='600'
+            )
+        ]),
+        html.Div(className='map', children=[
+            html.Iframe(
+                id='my-map',
+                srcDoc=open('./data/my_route.html', 'r').read(),
                 width='50%',
                 height='600'
             )
