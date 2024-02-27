@@ -65,7 +65,7 @@ class KF:
             # P = (I - k H) * P
         """
 
-        H = np.array([1,0]).reshape((1,2))
+        H = np.array([1,0]).reshape((1,2))                  ## Important for sensor fusion
 
         z = np.array([meas_value])
         R = np.array([meas_variance])
