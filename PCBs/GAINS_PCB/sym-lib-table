@@ -1,3 +1,4 @@
 (sym_lib_table
+  (version 7)
   (lib (name "GAINS_PCB_SYMBOLS")(type "KiCad")(uri "${KIPRJMOD}/GAINS_PCB_SYMBOLS.kicad_sym")(options "")(descr ""))
 )
