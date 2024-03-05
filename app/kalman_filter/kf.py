@@ -2,8 +2,7 @@
 import numpy as np
 
 class KF:
-    def __init__(self, initial_x: float, 
-                       initial_v: float, 
+    def __init__(self, initial_state: np.array, 
                        accel_variance: float) -> None:
         
         """
@@ -21,7 +20,7 @@ class KF:
         """
         
         # mean of state GRV
-        self._x = np.array([initial_x, initial_v])
+        self._x = initial_state
         self._accel_variance = accel_variance
 
         # covariance of state GRV
@@ -39,12 +38,27 @@ class KF:
             # P = F P F^t + G G^t a 
         """
         
+        dt2 = dt*dt
 
-        F = np.array([[1, dt], [0, 1]])
+        F = np.array([[1, dt, 0.5*dt2, 0, 0, 0],        # Linear equaiton for 'x'
+                      [0, 1, dt, 0, 0, 0],              # Linear equation for 'x dot'
+                      [0, 0, 1, 0, 0, 0],               # Linear equation for 'x double dot'
+                      [0, 0, 0, 1, dt, 0.5*dt2],        # Linear equation for 'y'
+                      [0, 0, 0, 0, 1, dt],              # Linear equation for 'y dot'
+                      [0, 0, 0, 0, 0, 1]])              # LInear equation for 'y double dot'
+        
         new_x = F.dot(self._x)
 
-        G = np.array([0.5 * dt**2, dt]).reshape((2,1))
-        new_P = F.dot(self._P).dot(F.T) + G.dot(G.T) * self._accel_variance
+        Q = np.array([[]])
+
+        G = np.array([0.5*dt2, dt, 1, 0.5*dt2, dt, 1]).T
+        var_a = np.array([[var_ax, var_ax, var_ax, 0, 0, 0],
+                          [var_ax, var_ax, var_ax, 0, 0, 0],
+                          [var_ax, var_ax, var_ax, 0, 0, 0],
+                          [0, 0, 0, var_ay, var_ay, var_ay],
+                          [0, 0, 0, var_ay, var_ay, var_ay],
+                          [0, 0, 0, var_ay, var_ay, var_ay]])
+        new_P = F.dot(self._P).dot(F.T) + G.dot(G.T) * var_a
 
         self._P = new_P
         self._x = new_x
