@@ -39,6 +39,8 @@ class KF:
         """
         
         dt2 = dt*dt
+        var_ax = 0.001
+        var_ay = 0.002
 
         F = np.array([[1, dt, 0.5*dt2, 0, 0, 0],        # Linear equaiton for 'x'
                       [0, 1, dt, 0, 0, 0],              # Linear equation for 'x dot'
