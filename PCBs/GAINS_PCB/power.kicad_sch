@@ -958,13 +958,13 @@
       )
     )
     (symbol "Switch:SW_DPST" (pin_names (offset 0) hide) (in_bom yes) (on_board yes)
-      (property "Reference" "SW" (at 0 5.08 0)
+      (property "Reference" "SW201" (at 0 8.255 0)
         (effects (font (size 1.27 1.27)))
       )
-      (property "Value" "SW_DPST" (at 0 -5.08 0)
+      (property "Value" "Power Switch" (at 0 5.715 0)
         (effects (font (size 1.27 1.27)))
       )
-      (property "Footprint" "" (at 0 0 0)
+      (property "Footprint" "GAINS_FOOTPRINTS:Power Switch" (at 0 0 0)
         (effects (font (size 1.27 1.27)) hide)
       )
       (property "Datasheet" "~" (at 0 0 0)
@@ -1058,6 +1058,14 @@
         (pin passive line (at 5.08 2.54 180) (length 2.54)
           (name "4" (effects (font (size 1.27 1.27))))
           (number "4" (effects (font (size 1.27 1.27))))
+        )
+        (pin no_connect line (at 0 -8.89 0) (length 2.54) hide
+          (name "NC" (effects (font (size 1.27 1.27))))
+          (number "5" (effects (font (size 1.27 1.27))))
+        )
+        (pin no_connect line (at 0 -12.7 0) (length 2.54) hide
+          (name "NC" (effects (font (size 1.27 1.27))))
+          (number "6" (effects (font (size 1.27 1.27))))
         )
       )
     )
@@ -1710,6 +1718,8 @@
     (pin "2" (uuid 88ac7968-10a0-409a-991e-f104513265a8))
     (pin "3" (uuid 050fc0a7-631f-4ec3-9ccf-c19ba801a025))
     (pin "4" (uuid 7cc0dd25-cac0-49ae-96c7-fccccc7e8b55))
+    (pin "5" (uuid baeacfb0-0e80-4d14-833c-d915b6d1a460))
+    (pin "6" (uuid e84dda64-e8e5-49b8-8322-1a1d65232144))
     (instances
       (project "GAINS_PCB"
         (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/b2706750-36b4-43d7-be89-e06ec95081b7"
@@ -1799,7 +1809,7 @@
   (symbol (lib_id "Device:C") (at 165.735 75.565 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 0c830d67-7e7c-449e-a17f-06dc724e4a40)
-    (property "Reference" "C206" (at 165.735 79.375 90)
+    (property "Reference" "C204" (at 165.735 79.375 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "0.1u" (at 165.735 81.915 90)
@@ -1816,7 +1826,7 @@
     (instances
       (project "GAINS_PCB"
         (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/b2706750-36b4-43d7-be89-e06ec95081b7"
-          (reference "C206") (unit 1)
+          (reference "C204") (unit 1)
         )
       )
     )
@@ -1831,7 +1841,7 @@
     (property "Value" "PMOS" (at 85.09 109.855 90)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "Transistor_Power:GaN_Systems_GaNPX-4_7x8.4mm" (at 90.17 111.125 0)
+    (property "Footprint" "Package_TO_SOT_THT:TO-92" (at 90.17 111.125 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 87.63 116.205 0)
@@ -1935,7 +1945,7 @@
     (property "Value" "LTC3426" (at 128.27 126.365 0)
       (effects (font (size 1.27 1.27)))
     )
-    (property "Footprint" "Package_TO_SOT_SMD:TSOT-23-5" (at 118.11 117.475 0)
+    (property "Footprint" "Package_TO_SOT_SMD:TSOT-23-6_HandSoldering" (at 118.11 117.475 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "https://www.analog.com/media/en/technical-documentation/data-sheets/3426fb.pdf" (at 118.11 117.475 0)
@@ -1985,7 +1995,7 @@
   (symbol (lib_name "GND_3") (lib_id "power:GND") (at 210.82 64.135 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 24905c3b-169c-4d39-b008-7ec814bd5cf5)
-    (property "Reference" "#PWR0204" (at 210.82 70.485 0)
+    (property "Reference" "#PWR0206" (at 210.82 70.485 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 210.82 68.58 0)
@@ -2001,7 +2011,7 @@
     (instances
       (project "GAINS_PCB"
         (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/b2706750-36b4-43d7-be89-e06ec95081b7"
-          (reference "#PWR0204") (unit 1)
+          (reference "#PWR0206") (unit 1)
         )
       )
     )
@@ -2035,7 +2045,7 @@
   (symbol (lib_id "power:GND") (at 160.655 93.98 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 3c849e28-835a-49b1-a7b5-61116f386896)
-    (property "Reference" "#PWR0205" (at 160.655 100.33 0)
+    (property "Reference" "#PWR0203" (at 160.655 100.33 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 160.655 99.06 0)
@@ -2051,7 +2061,7 @@
     (instances
       (project "GAINS_PCB"
         (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/b2706750-36b4-43d7-be89-e06ec95081b7"
-          (reference "#PWR0205") (unit 1)
+          (reference "#PWR0203") (unit 1)
         )
       )
     )
@@ -2060,7 +2070,7 @@
   (symbol (lib_id "Device:C_Polarized_US") (at 194.945 122.555 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 3def0d86-f138-400b-86c9-4b938c2695cb)
-    (property "Reference" "C205" (at 198.12 120.6499 0)
+    (property "Reference" "C206" (at 198.12 120.6499 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "100u" (at 198.12 123.1899 0)
@@ -2077,7 +2087,7 @@
     (instances
       (project "GAINS_PCB"
         (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/b2706750-36b4-43d7-be89-e06ec95081b7"
-          (reference "C205") (unit 1)
+          (reference "C206") (unit 1)
         )
       )
     )
@@ -2086,7 +2096,7 @@
   (symbol (lib_id "power:GND") (at 202.565 132.08 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 47068c02-aa66-454b-9102-a5c577f382ef)
-    (property "Reference" "#PWR0203" (at 202.565 138.43 0)
+    (property "Reference" "#PWR0205" (at 202.565 138.43 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 202.565 136.525 0)
@@ -2102,7 +2112,7 @@
     (instances
       (project "GAINS_PCB"
         (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/b2706750-36b4-43d7-be89-e06ec95081b7"
-          (reference "#PWR0203") (unit 1)
+          (reference "#PWR0205") (unit 1)
         )
       )
     )
@@ -2212,7 +2222,7 @@
   (symbol (lib_id "Amplifier_Operational:MCP602") (at 254 92.71 0) (unit 2)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 6dd1b939-acdc-40d6-ad06-6aeede580106)
-    (property "Reference" "U204" (at 254 83.185 0)
+    (property "Reference" "U203" (at 254 83.185 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "MCP602" (at 254 85.725 0)
@@ -2225,17 +2235,17 @@
       (effects (font (size 1.27 1.27)) hide)
     )
     (pin "1" (uuid 2f5ea502-cfc8-4cf2-a72e-de6d2fe7c6bb))
-    (pin "8" (uuid c108c98c-ab49-4184-8bcc-197323922eae))
-    (pin "7" (uuid e98884ce-a75d-4941-86da-abc742731b4f))
-    (pin "3" (uuid 0fe08f58-dbc3-4f5f-99f1-821310401915))
     (pin "2" (uuid 35151918-6cd9-44e6-ab5d-6f0187900b5c))
-    (pin "6" (uuid d65077f6-99ad-4c83-bf8b-3442434f7719))
+    (pin "3" (uuid 0fe08f58-dbc3-4f5f-99f1-821310401915))
     (pin "5" (uuid a05df928-7b25-4d75-b45a-bcdefc19c5bd))
+    (pin "6" (uuid d65077f6-99ad-4c83-bf8b-3442434f7719))
+    (pin "7" (uuid e98884ce-a75d-4941-86da-abc742731b4f))
     (pin "4" (uuid c69eb456-f360-4b85-88ce-293733560053))
+    (pin "8" (uuid c108c98c-ab49-4184-8bcc-197323922eae))
     (instances
       (project "GAINS_PCB"
         (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/b2706750-36b4-43d7-be89-e06ec95081b7"
-          (reference "U204") (unit 2)
+          (reference "U203") (unit 2)
         )
       )
     )
@@ -2270,7 +2280,7 @@
   (symbol (lib_id "power:GND") (at 173.355 77.47 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 76b28e34-2ed1-490e-b9a1-cfe805067085)
-    (property "Reference" "#PWR0206" (at 173.355 83.82 0)
+    (property "Reference" "#PWR0204" (at 173.355 83.82 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 173.355 82.55 0)
@@ -2286,7 +2296,7 @@
     (instances
       (project "GAINS_PCB"
         (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/b2706750-36b4-43d7-be89-e06ec95081b7"
-          (reference "#PWR0206") (unit 1)
+          (reference "#PWR0204") (unit 1)
         )
       )
     )
@@ -2501,7 +2511,7 @@
   (symbol (lib_id "Amplifier_Operational:MCP602") (at 163.195 86.36 0) (unit 3)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid c8cb7117-9bdd-473e-856c-ee93fc50c77f)
-    (property "Reference" "U204" (at 161.925 85.09 0)
+    (property "Reference" "U203" (at 161.925 85.09 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "MCP602" (at 161.925 87.63 0)
@@ -2513,18 +2523,18 @@
     (property "Datasheet" "http://ww1.microchip.com/downloads/en/DeviceDoc/21314g.pdf" (at 163.195 86.36 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 2f5ea502-cfc8-4cf2-a72e-de6d2fe7c6bb))
-    (pin "8" (uuid c108c98c-ab49-4184-8bcc-197323922eae))
-    (pin "7" (uuid e98884ce-a75d-4941-86da-abc742731b4f))
-    (pin "3" (uuid 0fe08f58-dbc3-4f5f-99f1-821310401915))
-    (pin "2" (uuid 35151918-6cd9-44e6-ab5d-6f0187900b5c))
-    (pin "6" (uuid d65077f6-99ad-4c83-bf8b-3442434f7719))
-    (pin "5" (uuid a05df928-7b25-4d75-b45a-bcdefc19c5bd))
-    (pin "4" (uuid c69eb456-f360-4b85-88ce-293733560053))
+    (pin "1" (uuid 2f5ea502-cfc8-4cf2-a72e-de6d2fe7c6bc))
+    (pin "2" (uuid 35151918-6cd9-44e6-ab5d-6f0187900b5d))
+    (pin "3" (uuid 0fe08f58-dbc3-4f5f-99f1-821310401916))
+    (pin "5" (uuid a05df928-7b25-4d75-b45a-bcdefc19c5be))
+    (pin "6" (uuid d65077f6-99ad-4c83-bf8b-3442434f771a))
+    (pin "7" (uuid e98884ce-a75d-4941-86da-abc742731b50))
+    (pin "4" (uuid c69eb456-f360-4b85-88ce-293733560054))
+    (pin "8" (uuid c108c98c-ab49-4184-8bcc-197323922eaf))
     (instances
       (project "GAINS_PCB"
         (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/b2706750-36b4-43d7-be89-e06ec95081b7"
-          (reference "U204") (unit 3)
+          (reference "U203") (unit 3)
         )
       )
     )
@@ -2565,7 +2575,7 @@
     (property "Value" "MCP73811T" (at 156.7306 29.845 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
-    (property "Footprint" "Package_TO_SOT_SMD:SOT-23-5" (at 154.94 43.815 0)
+    (property "Footprint" "Package_TO_SOT_SMD:SOT-23-5_HandSoldering" (at 154.94 43.815 0)
       (effects (font (size 1.27 1.27)) (justify left) hide)
     )
     (property "Datasheet" "http://ww1.microchip.com/downloads/en/DeviceDoc/22036b.pdf" (at 162.56 31.115 0)
@@ -2588,7 +2598,7 @@
   (symbol (lib_id "Device:C") (at 179.705 45.72 0) (mirror y) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid d48e005d-e52c-4c60-9308-17d9b5e42280)
-    (property "Reference" "C204" (at 182.245 44.45 0)
+    (property "Reference" "C205" (at 182.245 44.45 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "1u" (at 182.245 46.99 0)
@@ -2605,7 +2615,7 @@
     (instances
       (project "GAINS_PCB"
         (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/b2706750-36b4-43d7-be89-e06ec95081b7"
-          (reference "C204") (unit 1)
+          (reference "C205") (unit 1)
         )
       )
     )
@@ -2640,7 +2650,7 @@
   (symbol (lib_id "Amplifier_Operational:MCP602") (at 246.38 48.895 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid dba82d77-ccc8-494e-9090-5bb5412fd7d7)
-    (property "Reference" "U204" (at 246.38 38.735 0)
+    (property "Reference" "U203" (at 246.38 38.735 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "MCP602" (at 246.38 41.275 0)
@@ -2652,18 +2662,18 @@
     (property "Datasheet" "http://ww1.microchip.com/downloads/en/DeviceDoc/21314g.pdf" (at 246.38 48.895 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 2f5ea502-cfc8-4cf2-a72e-de6d2fe7c6bb))
-    (pin "8" (uuid c108c98c-ab49-4184-8bcc-197323922eae))
-    (pin "7" (uuid e98884ce-a75d-4941-86da-abc742731b4f))
-    (pin "3" (uuid 0fe08f58-dbc3-4f5f-99f1-821310401915))
-    (pin "2" (uuid 35151918-6cd9-44e6-ab5d-6f0187900b5c))
-    (pin "6" (uuid d65077f6-99ad-4c83-bf8b-3442434f7719))
-    (pin "5" (uuid a05df928-7b25-4d75-b45a-bcdefc19c5bd))
-    (pin "4" (uuid c69eb456-f360-4b85-88ce-293733560053))
+    (pin "1" (uuid 2f5ea502-cfc8-4cf2-a72e-de6d2fe7c6bd))
+    (pin "2" (uuid 35151918-6cd9-44e6-ab5d-6f0187900b5e))
+    (pin "3" (uuid 0fe08f58-dbc3-4f5f-99f1-821310401917))
+    (pin "5" (uuid a05df928-7b25-4d75-b45a-bcdefc19c5bf))
+    (pin "6" (uuid d65077f6-99ad-4c83-bf8b-3442434f771b))
+    (pin "7" (uuid e98884ce-a75d-4941-86da-abc742731b51))
+    (pin "4" (uuid c69eb456-f360-4b85-88ce-293733560055))
+    (pin "8" (uuid c108c98c-ab49-4184-8bcc-197323922eb0))
     (instances
       (project "GAINS_PCB"
         (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/b2706750-36b4-43d7-be89-e06ec95081b7"
-          (reference "U204") (unit 1)
+          (reference "U203") (unit 1)
         )
       )
     )
