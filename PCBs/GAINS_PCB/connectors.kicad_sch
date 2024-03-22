@@ -7,7 +7,7 @@
   (title_block
     (title "G.A.I.N.S. Connectors")
     (date "2024-01-30")
-    (rev "0.3")
+    (rev "1")
     (company "Purdue University")
     (comment 1 "Team 19")
     (comment 2 "Owner: Cameron")
@@ -411,7 +411,7 @@
     (pin "1" (uuid 3350f7b9-b8f0-4b09-bb19-352b32ed49d7))
     (pin "2" (uuid 20374abc-9a90-42ff-82f0-8b40ef3ba1ac))
     (pin "MP" (uuid 3fb4fdb1-cce9-4117-81e9-ce164d5888b4))
-    (pin "MP" (uuid 3fb4fdb1-cce9-4117-81e9-ce164d5888b4))
+    (pin "MP" (uuid 3fb4fdb1-cce9-4117-81e9-ce164d5888b5))
     (instances
       (project "GAINS_PCB"
         (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/8e08c34b-a9c7-4fda-9044-dba8c383b5af"

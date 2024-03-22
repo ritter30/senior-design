@@ -49,7 +49,11 @@
         }
       },
       "diff_pair_dimensions": [],
-      "drc_exclusions": [],
+      "drc_exclusions": [
+        "silk_edge_clearance|111760000|87512991|0d8c919f-c968-4e52-b5c7-650302b50517|3848fc0d-747b-4334-93f4-b99fb8004c5f",
+        "silk_edge_clearance|111760000|95232991|0d8c919f-c968-4e52-b5c7-650302b50517|ae4f8a1a-34a5-4d66-9f5f-f57cf74bd387",
+        "silk_over_copper|142660000|153350991|3e0b0a4b-0666-456b-ac09-bfcab6460b1d|00000000-0000-0000-0000-000000000000"
+      ],
       "meta": {
         "version": 2
       },
@@ -112,7 +116,7 @@
         "min_hole_to_hole": 0.25,
         "min_microvia_diameter": 0.19999999999999998,
         "min_microvia_drill": 0.09999999999999999,
-        "min_resolved_spokes": 2,
+        "min_resolved_spokes": 1,
         "min_silk_clearance": 0.0,
         "min_text_height": 0.7999999999999999,
         "min_text_thickness": 0.08,

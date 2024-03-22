@@ -7,7 +7,7 @@
   (title_block
     (title "G.A.I.N.S. GPS Module")
     (date "2024-01-30")
-    (rev "0.3")
+    (rev "1")
     (company "Purdue University")
     (comment 1 "Team 19")
     (comment 2 "Owner: Cameron")
@@ -629,7 +629,7 @@
     )
   )
 
-  (symbol (lib_id "Device:R_US") (at 192.405 98.425 90) (unit 1)
+  (symbol (lib_id "Device:R_US") (at 192.405 98.425 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 268a5aee-bce4-4e3d-aff8-308044591875)
     (property "Reference" "R702" (at 192.405 92.71 90)
@@ -638,7 +638,7 @@
     (property "Value" "470" (at 192.405 95.25 90)
       (effects (font (size 1.27 1.27)))
     )
-    (property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder" (at 192.659 97.409 90)
+    (property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder" (at 192.151 99.441 90)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 192.405 98.425 0)
