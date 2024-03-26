@@ -84,8 +84,11 @@ class KF:
 
         H = meas_func                  ## Important for sensor fusion
 
-        z = np.array([meas_value])
-        R = np.array([meas_variance])
+        z = meas_value
+        R = meas_variance
+
+        # print(z)
+        # print(R) 
 
         y = z - H.dot(self._x)
         S = H.dot(self._P).dot(H.T) + R
@@ -111,7 +114,7 @@ if __name__ == '__main__':
     import matplotlib.pyplot as plt
     import numpy as np
 
-    accel = np.loadtxt('/Users/pal/Desktop/senior_design/code/app/data/noise_accel_data.csv', delimiter=",")
+    accel = np.loadtxt('/Users/pal/Desktop/senior_design/code/app/data/downstairs_accel_data.csv', delimiter=",")
 
     DT = 0.01
     DT2 = DT * DT
@@ -125,7 +128,6 @@ if __name__ == '__main__':
     x_pos = np.array([])
 
     real_x_pos = 0.0
-    imu_variance_x = 93.1225e-6     # The calibration variance measured when sitting still
     real_v = 0.0
 
     R_imu = np.array([
@@ -146,7 +148,7 @@ if __name__ == '__main__':
         covs.append(kf.cov)
         mus.append(kf.mean)
 
-        meas_accel = accel[step]
+        meas_accel = np.array(accel[step]).reshape((3,1))
 
         real_v = 0.0
         real_x_pos = 0.0
@@ -162,15 +164,15 @@ if __name__ == '__main__':
     fig, ax = plt.subplots(2, 1, sharex=True, sharey=True, figsize=(16,9))
 
     ax[0].set_title('X Position')
-    ax[0].plot(TIME, [mu[0] for mu in mus], 'g')
+    ax[0].plot(TIME, [float(mu[0]) for mu in mus], 'g')
     ax[0].plot(TIME, x_pos, 'b')
-    ax[0].fill_between(
-        TIME,
-        [mu[0] + 2*np.sqrt(cov[0,0]) for mu, cov in zip(mus,covs)],
-        [mu[0] - 2*np.sqrt(cov[0,0]) for mu, cov in zip(mus,covs)],
-        facecolor='r',
-        alpha=0.2
-        )
+    # ax[0].fill_between(
+    #     TIME,
+    #     [float(mu[0] + 2*np.sqrt(cov[0,0])) for mu, cov in zip(mus,covs)],
+    #     [float(mu[0] - 2*np.sqrt(cov[0,0])) for mu, cov in zip(mus,covs)],
+    #     facecolor='r',
+    #     alpha=0.2
+    #     )
     ax[0].legend(['Predicted X', 'Real X', 'Error'])
 
     ax[1].set_title('X Velocity')
