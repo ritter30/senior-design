@@ -67,5 +67,24 @@ out = gps_data[['latitude', 'longitude', 'time']]
 out.drop(index=0, axis=0, inplace=True)
 out['latitude'] = out['latitude'].str.strip('N').astype(float)
 out['longitude'] = out['longitude'].str.strip('W').astype(float)
+gps_data = out
 out.to_csv('/Users/pal/Desktop/senior_design/code/app/data/run01_gps.csv', header=False, index=False)
 # %%
+
+def meters_to_gps_coordinates(
+        relative_distance_meters: np.array, 
+        reference_latitude: float, 
+        reference_longitude: float):
+    # Earth's radius in meters
+    earth_radius = 6371000
+
+    # Convert relative distance to radians
+    relative_distance_radians = relative_distance_meters / earth_radius
+
+    # Calculate new latitude
+    new_latitude = reference_latitude + (relative_distance_radians * (180 / np.pi))
+
+    # Calculate new longitude
+    new_longitude = reference_longitude + (relative_distance_radians * (180 / np.pi) / np.cos(reference_latitude * np.pi / 180))
+
+    return new_latitude, new_longitude

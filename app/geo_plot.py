@@ -65,14 +65,11 @@ def plot_from_gps(path):
     # df_route.columns = ['lat', 'lon', 't', 'nan']
     df_route.columns = ['lat', 'lon', 't']
     # df_route.drop('nan', axis=1, inplace=True)
-    print(df_route)
     df_route.astype({
         'lat': float,
         'lon': float,
         't': str
     })
-
-    
 
     df_route['lat'] = ((df_route['lat'] / 100) % 1) / .6 + (df_route['lat'] // 100)
     df_route['lon'] = (((df_route['lon'] / 100) % 1) / .6 + (df_route['lon'] // 100)) * -1
