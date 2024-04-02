@@ -62,8 +62,17 @@ def plot_from_gps(path):
     file_path = path
 
     df_route = pd.read_csv(file_path, header=None)
-    df_route.columns = ['lat', 'lon', 't', 'nan']
-    df_route.drop('nan', axis=1, inplace=True)
+    # df_route.columns = ['lat', 'lon', 't', 'nan']
+    df_route.columns = ['lat', 'lon', 't']
+    # df_route.drop('nan', axis=1, inplace=True)
+    print(df_route)
+    df_route.astype({
+        'lat': float,
+        'lon': float,
+        't': str
+    })
+
+    
 
     df_route['lat'] = ((df_route['lat'] / 100) % 1) / .6 + (df_route['lat'] // 100)
     df_route['lon'] = (((df_route['lon'] / 100) % 1) / .6 + (df_route['lon'] // 100)) * -1
@@ -103,7 +112,7 @@ def plot_from_gps(path):
 
 # %%
 if __name__ == '__main__':
-    plot_from_gps('./data/gps_data.csv')
-    plot_grand_prix()
+    plot_from_gps('/Users/pal/Desktop/senior_design/code/app/data/run01_gps.csv')
+    # plot_grand_prix()
     
 # %%
