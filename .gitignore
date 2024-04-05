@@ -2,4 +2,6 @@
 *.DS_Store
 *.vscode
 __pycache__
-utils
+*/utils
+*/data
+*/animations

@@ -23,6 +23,9 @@ class KF:
         self._var_ay = 0.0000808201
         self._var_az = 0.0001729225
 
+    def __repr__(self):
+        return f"x: {self._x.shape}\nP: {self._P.shape}\nQ: {self._Q.shape}"
+
     def predict(self, dt: float) -> None:
         r"""
         The Prediction of next state
@@ -110,82 +113,82 @@ class KF:
         return self._x
 
 # %%
-if __name__ == '__main__':
-    import matplotlib.pyplot as plt
-    import numpy as np
+# if __name__ == '__main__':
+#     import matplotlib.pyplot as plt
+#     import numpy as np
 
-    accel = np.loadtxt('/Users/pal/Desktop/senior_design/code/app/data/downstairs_accel_data.csv', delimiter=",")
+#     accel = np.loadtxt('/Users/pal/Desktop/senior_design/code/app/data/downstairs_accel_data.csv', delimiter=",")
 
-    DT = 0.01
-    DT2 = DT * DT
-    MEAS_EVERY_STEPS = 100
-    TIME = [DT * i for i in range(accel.shape[0])]
-    initial_x = np.array([[0,0,0,0,0,0,0,0,0]]).T
+#     DT = 0.01
+#     DT2 = DT * DT
+#     MEAS_EVERY_STEPS = 100
+#     TIME = [DT * i for i in range(accel.shape[0])]
+#     initial_x = np.array([[0,0,0,0,0,0,0,0,0]]).T
 
-    mus = []
-    covs = []
-    x_accel = np.array([])
-    x_pos = np.array([])
+#     mus = []
+#     covs = []
+#     x_accel = np.array([])
+#     x_pos = np.array([])
 
-    real_x_pos = 0.0
-    real_v = 0.0
+#     real_x_pos = 0.0
+#     real_v = 0.0
 
-    R_imu = np.array([
-        [1000, 0, 0],
-        [0, 1000, 0],
-        [0, 0, 1000]
-    ])
+#     R_imu = np.array([
+#         [1000, 0, 0],
+#         [0, 1000, 0],
+#         [0, 0, 1000]
+#     ])
     
-    H_imu = np.zeros((3,9))
+#     H_imu = np.zeros((3,9))
 
-    H_imu[0,2] = 1
-    H_imu[1,5] = 1
-    H_imu[2,8] = 1
+#     H_imu[0,2] = 1
+#     H_imu[1,5] = 1
+#     H_imu[2,8] = 1
 
-    kf = KF(initial_state=initial_x)
+#     kf = KF(initial_state=initial_x)
 
-    for step in range(accel.shape[0]):
-        covs.append(kf.cov)
-        mus.append(kf.mean)
+#     for step in range(accel.shape[0]):
+#         covs.append(kf.cov)
+#         mus.append(kf.mean)
 
-        meas_accel = np.array(accel[step]).reshape((3,1))
+#         meas_accel = np.array(accel[step]).reshape((3,1))
 
-        real_v = 0.0
-        real_x_pos = 0.0
+#         real_v = 0.0
+#         real_x_pos = 0.0
 
-        x_accel = np.append(x_accel, meas_accel)
-        x_pos = np.append(x_pos, real_x_pos)  
+#         x_accel = np.append(x_accel, meas_accel)
+#         x_pos = np.append(x_pos, real_x_pos)  
 
-        kf.predict(dt=DT)
-        if step != 0 and step % MEAS_EVERY_STEPS == 0:
-            kf.update(meas_value=meas_accel, meas_variance=R_imu, meas_func=H_imu)
-            # print(np.var(x_accel))
+#         kf.predict(dt=DT)
+#         if step != 0 and step % MEAS_EVERY_STEPS == 0:
+#             kf.update(meas_value=meas_accel, meas_variance=R_imu, meas_func=H_imu)
+#             # print(np.var(x_accel))
 
-    fig, ax = plt.subplots(2, 1, sharex=True, sharey=True, figsize=(16,9))
+#     fig, ax = plt.subplots(2, 1, sharex=True, sharey=True, figsize=(16,9))
 
-    ax[0].set_title('X Position')
-    ax[0].plot(TIME, [float(mu[0]) for mu in mus], 'g')
-    ax[0].plot(TIME, x_pos, 'b')
-    # ax[0].fill_between(
-    #     TIME,
-    #     [float(mu[0] + 2*np.sqrt(cov[0,0])) for mu, cov in zip(mus,covs)],
-    #     [float(mu[0] - 2*np.sqrt(cov[0,0])) for mu, cov in zip(mus,covs)],
-    #     facecolor='r',
-    #     alpha=0.2
-    #     )
-    ax[0].legend(['Predicted X', 'Real X', 'Error'])
+#     ax[0].set_title('X Position')
+#     ax[0].plot(TIME, [float(mu[0]) for mu in mus], 'g')
+#     ax[0].plot(TIME, x_pos, 'b')
+#     # ax[0].fill_between(
+#     #     TIME,
+#     #     [float(mu[0] + 2*np.sqrt(cov[0,0])) for mu, cov in zip(mus,covs)],
+#     #     [float(mu[0] - 2*np.sqrt(cov[0,0])) for mu, cov in zip(mus,covs)],
+#     #     facecolor='r',
+#     #     alpha=0.2
+#     #     )
+#     ax[0].legend(['Predicted X', 'Real X', 'Error'])
 
-    ax[1].set_title('X Velocity')
-    ax[1].plot(TIME, [mu[1] for mu in mus], 'g')
-    ax[1].plot(TIME, [real_v for i in range(accel.shape[0])], 'b')
-    ax[1].fill_between(
-        TIME,
-        [mu[1] - 2*np.sqrt(cov[1,1]) for mu, cov in zip(mus,covs)],
-        [mu[1] + 2*np.sqrt(cov[1,1]) for mu, cov in zip(mus,covs)],
-        facecolor='r',
-        alpha=0.2
-        )
-    ax[1].legend(['Predicted X', 'Real X', 'Error'])
+#     ax[1].set_title('X Velocity')
+#     ax[1].plot(TIME, [mu[1] for mu in mus], 'g')
+#     ax[1].plot(TIME, [real_v for i in range(accel.shape[0])], 'b')
+#     ax[1].fill_between(
+#         TIME,
+#         [mu[1] - 2*np.sqrt(cov[1,1]) for mu, cov in zip(mus,covs)],
+#         [mu[1] + 2*np.sqrt(cov[1,1]) for mu, cov in zip(mus,covs)],
+#         facecolor='r',
+#         alpha=0.2
+#         )
+#     ax[1].legend(['Predicted X', 'Real X', 'Error'])
 
-    plt.show()
-# %%
+#     plt.show()
+# # %%

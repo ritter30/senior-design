@@ -56,23 +56,25 @@ def plot_grand_prix():
 
     return map_grand_prix
 
-def plot_from_gps(path):
+def plot_from_gps(path, nmea_format='DD'):
     pd.set_option('display.precision', 2)
 
     file_path = path
 
     df_route = pd.read_csv(file_path, header=None)
     # df_route.columns = ['lat', 'lon', 't', 'nan']
-    df_route.columns = ['lat', 'lon', 't']
+    # df_route.columns = ['lat', 'lon', 't']
+    df_route.columns = ['lat', 'lon']
     # df_route.drop('nan', axis=1, inplace=True)
     df_route.astype({
         'lat': float,
         'lon': float,
-        't': str
+        # 't': str
     })
 
-    df_route['lat'] = ((df_route['lat'] / 100) % 1) / .6 + (df_route['lat'] // 100)
-    df_route['lon'] = (((df_route['lon'] / 100) % 1) / .6 + (df_route['lon'] // 100)) * -1
+    if nmea_format != 'DD':
+        df_route['lat'] = ((df_route['lat'] / 100) % 1) / .6 + (df_route['lat'] // 100)
+        df_route['lon'] = (((df_route['lon'] / 100) % 1) / .6 + (df_route['lon'] // 100)) * -1
 
     avg_location = df_route[['lat', 'lon']].mean()
     my_map = folium.Map(location=(avg_location[0], avg_location[1]), zoom_start=13)
@@ -87,7 +89,7 @@ def plot_from_gps(path):
     my_map = folium.Map(location=avg_location, zoom_start=18)
 
     for stop in df_route_segments.itertuples():
-        print(stop)
+        # print(stop)
         # marker for current stop
         marker = folium.Marker(location=(stop.lat, stop.lon))
         # line for the route segment connecting current to next stop
@@ -109,7 +111,7 @@ def plot_from_gps(path):
 
 # %%
 if __name__ == '__main__':
-    plot_from_gps('/Users/pal/Desktop/senior_design/code/app/data/run01_gps.csv')
+    plot_from_gps('/Users/pal/Desktop/senior_design/code/app/data/fused_run01.csv')
     # plot_grand_prix()
     
 # %%
