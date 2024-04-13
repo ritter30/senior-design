@@ -687,6 +687,10 @@
     (effects (font (size 1.27 1.27)) (justify right))
     (uuid b0bde11d-1b6d-41ff-ae7e-1e7b75370f78)
   )
+  (hierarchical_label "+3V3" (shape input) (at 94.615 129.54 180) (fields_autoplaced)
+    (effects (font (size 1.27 1.27)) (justify right))
+    (uuid e3ae9cda-2fb0-4e7d-9e23-b2da0f6c2a57)
+  )
   (hierarchical_label "SCL" (shape input) (at 96.52 112.395 180) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify right))
     (uuid f4c97dd3-6a7d-4435-98b5-86573158d890)
@@ -699,7 +703,7 @@
   (symbol (lib_id "power:GND") (at 170.815 109.855 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 0242eb20-2b79-44e4-9a01-e3c221832259)
-    (property "Reference" "#PWR0505" (at 170.815 116.205 0)
+    (property "Reference" "#PWR0605" (at 170.815 116.205 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 170.815 114.3 0)
@@ -714,8 +718,8 @@
     (pin "1" (uuid 171c0c2e-6653-43b3-b3ea-bdf034137b82))
     (instances
       (project "GAINS_PCB"
-        (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/faa977b4-6d34-4953-956b-9a5320061689"
-          (reference "#PWR0505") (unit 1)
+        (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/fbde3f6b-1fb2-47f7-a3b9-51b71038bda7"
+          (reference "#PWR0605") (unit 1)
         )
       )
     )
@@ -724,7 +728,7 @@
   (symbol (lib_id "Device:C") (at 125.73 71.755 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 0574170b-ce36-4ce3-a266-9385b6eb6c5e)
-    (property "Reference" "C501" (at 125.73 64.77 90)
+    (property "Reference" "C601" (at 125.73 64.77 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "0.1u" (at 125.73 67.31 90)
@@ -740,8 +744,8 @@
     (pin "2" (uuid 881a133b-6528-40da-802a-57b1ce79cb8f))
     (instances
       (project "GAINS_PCB"
-        (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/faa977b4-6d34-4953-956b-9a5320061689"
-          (reference "C501") (unit 1)
+        (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/fbde3f6b-1fb2-47f7-a3b9-51b71038bda7"
+          (reference "C601") (unit 1)
         )
       )
     )
@@ -750,7 +754,7 @@
   (symbol (lib_id "Device:C") (at 159.385 92.075 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 40e9ba73-4719-417f-af63-4c5540a7b38b)
-    (property "Reference" "C503" (at 159.385 84.455 90)
+    (property "Reference" "C603" (at 159.385 84.455 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "22p" (at 159.385 86.995 90)
@@ -766,33 +770,8 @@
     (pin "2" (uuid ddf198b1-b67d-450d-ae8c-bae0d118fe33))
     (instances
       (project "GAINS_PCB"
-        (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/faa977b4-6d34-4953-956b-9a5320061689"
-          (reference "C503") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "power:GND") (at 94.615 129.54 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
-    (uuid 44f1336b-e166-4e66-8fe0-3257a7d6c684)
-    (property "Reference" "#PWR0507" (at 94.615 135.89 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Value" "GND" (at 94.615 133.985 0)
-      (effects (font (size 1.27 1.27)))
-    )
-    (property "Footprint" "" (at 94.615 129.54 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "" (at 94.615 129.54 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid 29026a6e-83f8-4d37-b7bf-d16c0218c91e))
-    (instances
-      (project "GAINS_PCB"
-        (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/faa977b4-6d34-4953-956b-9a5320061689"
-          (reference "#PWR0507") (unit 1)
+        (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/fbde3f6b-1fb2-47f7-a3b9-51b71038bda7"
+          (reference "C603") (unit 1)
         )
       )
     )
@@ -801,7 +780,7 @@
   (symbol (lib_id "Device:R_US") (at 190.5 92.71 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 5339b3e0-8b57-412e-abee-4c67245bce0d)
-    (property "Reference" "R501" (at 190.5 86.995 90)
+    (property "Reference" "R601" (at 190.5 86.995 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "10k" (at 190.5 89.535 90)
@@ -817,8 +796,8 @@
     (pin "2" (uuid deb27306-fa27-4bdb-8613-49bf83f83bdd))
     (instances
       (project "GAINS_PCB"
-        (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/faa977b4-6d34-4953-956b-9a5320061689"
-          (reference "R501") (unit 1)
+        (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/fbde3f6b-1fb2-47f7-a3b9-51b71038bda7"
+          (reference "R601") (unit 1)
         )
       )
     )
@@ -827,7 +806,7 @@
   (symbol (lib_id "Device:C") (at 159.385 104.775 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 6f30bb9a-bd01-48e2-8500-dac0756d66d8)
-    (property "Reference" "C504" (at 159.385 109.855 90)
+    (property "Reference" "C604" (at 159.385 109.855 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "22p" (at 159.385 112.395 90)
@@ -843,8 +822,8 @@
     (pin "2" (uuid 56b66f98-09ed-447b-ad19-5e05e2f24bd3))
     (instances
       (project "GAINS_PCB"
-        (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/faa977b4-6d34-4953-956b-9a5320061689"
-          (reference "C504") (unit 1)
+        (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/fbde3f6b-1fb2-47f7-a3b9-51b71038bda7"
+          (reference "C604") (unit 1)
         )
       )
     )
@@ -853,7 +832,7 @@
   (symbol (lib_id "Device:R_US") (at 190.5 104.14 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 7494ed05-a654-4318-9d5b-6ae69e714961)
-    (property "Reference" "R502" (at 190.5 98.425 90)
+    (property "Reference" "R602" (at 190.5 98.425 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "10k" (at 190.5 100.965 90)
@@ -869,8 +848,8 @@
     (pin "2" (uuid 52e4d760-8dca-421f-863c-2262d0e41bf9))
     (instances
       (project "GAINS_PCB"
-        (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/faa977b4-6d34-4953-956b-9a5320061689"
-          (reference "R502") (unit 1)
+        (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/fbde3f6b-1fb2-47f7-a3b9-51b71038bda7"
+          (reference "R602") (unit 1)
         )
       )
     )
@@ -879,7 +858,7 @@
   (symbol (lib_id "Device:C") (at 139.7 117.475 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 75e0872a-1de1-4b41-9ba9-f33194932d60)
-    (property "Reference" "C502" (at 139.7 121.285 90)
+    (property "Reference" "C602" (at 139.7 121.285 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "0.1u" (at 139.7 123.825 90)
@@ -895,8 +874,8 @@
     (pin "2" (uuid c83511f6-ac62-4391-bf86-a2e7c2a06802))
     (instances
       (project "GAINS_PCB"
-        (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/faa977b4-6d34-4953-956b-9a5320061689"
-          (reference "C502") (unit 1)
+        (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/fbde3f6b-1fb2-47f7-a3b9-51b71038bda7"
+          (reference "C602") (unit 1)
         )
       )
     )
@@ -905,7 +884,7 @@
   (symbol (lib_id "power:GND") (at 132.715 74.93 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 84f72987-6e68-4670-8063-4bbd71174d26)
-    (property "Reference" "#PWR0503" (at 132.715 81.28 0)
+    (property "Reference" "#PWR0603" (at 132.715 81.28 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 132.715 80.01 0)
@@ -920,8 +899,8 @@
     (pin "1" (uuid f86c77e0-85e2-44b6-9177-3682ecb4c597))
     (instances
       (project "GAINS_PCB"
-        (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/faa977b4-6d34-4953-956b-9a5320061689"
-          (reference "#PWR0503") (unit 1)
+        (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/fbde3f6b-1fb2-47f7-a3b9-51b71038bda7"
+          (reference "#PWR0603") (unit 1)
         )
       )
     )
@@ -930,7 +909,7 @@
   (symbol (lib_id "power:GND") (at 116.84 127.635 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 8572ad7c-6f19-4fbc-80a3-9fde5ebb7b9c)
-    (property "Reference" "#PWR0502" (at 116.84 133.985 0)
+    (property "Reference" "#PWR0602" (at 116.84 133.985 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 116.84 132.08 0)
@@ -945,8 +924,8 @@
     (pin "1" (uuid 8eb63f1c-09f8-4839-b890-f927e56341ac))
     (instances
       (project "GAINS_PCB"
-        (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/faa977b4-6d34-4953-956b-9a5320061689"
-          (reference "#PWR0502") (unit 1)
+        (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/fbde3f6b-1fb2-47f7-a3b9-51b71038bda7"
+          (reference "#PWR0602") (unit 1)
         )
       )
     )
@@ -955,7 +934,7 @@
   (symbol (lib_id "Device:Crystal") (at 143.51 98.425 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid c1b620a2-5c85-4162-be2c-77ca18e027e8)
-    (property "Reference" "Y501" (at 147.955 97.1549 90)
+    (property "Reference" "Y601" (at 147.955 97.1549 90)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "Crystal" (at 147.955 99.6949 90)
@@ -971,8 +950,8 @@
     (pin "2" (uuid 37f6d804-9cda-44d6-a1c2-23fcd87c7eb2))
     (instances
       (project "GAINS_PCB"
-        (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/faa977b4-6d34-4953-956b-9a5320061689"
-          (reference "Y501") (unit 1)
+        (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/fbde3f6b-1fb2-47f7-a3b9-51b71038bda7"
+          (reference "Y601") (unit 1)
         )
       )
     )
@@ -981,7 +960,7 @@
   (symbol (lib_id "GAINS_PCB_SYMBOLS:BNO055") (at 116.84 104.775 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid c84f5dcc-6d02-4e20-8243-b3bd03b7f352)
-    (property "Reference" "U501" (at 121.3994 83.82 0)
+    (property "Reference" "U601" (at 121.3994 83.82 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "BNO055" (at 121.3994 86.36 0)
@@ -1023,8 +1002,8 @@
     (pin "9" (uuid 343538d9-b82c-4963-bcf8-e24b797a3784))
     (instances
       (project "GAINS_PCB"
-        (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/faa977b4-6d34-4953-956b-9a5320061689"
-          (reference "U501") (unit 1)
+        (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/fbde3f6b-1fb2-47f7-a3b9-51b71038bda7"
+          (reference "U601") (unit 1)
         )
       )
     )
@@ -1033,7 +1012,7 @@
   (symbol (lib_id "Device:R_US") (at 94.615 123.19 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid d2ec465d-c265-4ccf-9161-a6d7b7d6e1db)
-    (property "Reference" "R504" (at 97.155 121.92 0)
+    (property "Reference" "R604" (at 97.155 121.92 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "10k" (at 97.155 124.46 0)
@@ -1049,8 +1028,8 @@
     (pin "2" (uuid 572cdc81-1216-4928-8356-1cf9dc273cd4))
     (instances
       (project "GAINS_PCB"
-        (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/faa977b4-6d34-4953-956b-9a5320061689"
-          (reference "R504") (unit 1)
+        (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/fbde3f6b-1fb2-47f7-a3b9-51b71038bda7"
+          (reference "R604") (unit 1)
         )
       )
     )
@@ -1059,7 +1038,7 @@
   (symbol (lib_id "power:GND") (at 84.455 120.015 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid ea0df1e2-5ec6-4abe-8fc5-251b4154b97d)
-    (property "Reference" "#PWR0501" (at 84.455 126.365 0)
+    (property "Reference" "#PWR0601" (at 84.455 126.365 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 84.455 125.095 0)
@@ -1074,8 +1053,8 @@
     (pin "1" (uuid 1b0d2d48-b538-46c7-9ec9-571fff6d903d))
     (instances
       (project "GAINS_PCB"
-        (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/faa977b4-6d34-4953-956b-9a5320061689"
-          (reference "#PWR0501") (unit 1)
+        (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/fbde3f6b-1fb2-47f7-a3b9-51b71038bda7"
+          (reference "#PWR0601") (unit 1)
         )
       )
     )
@@ -1084,7 +1063,7 @@
   (symbol (lib_id "Device:R_US") (at 190.5 115.57 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid eac2e02c-4981-49d1-83e0-58b9b7122029)
-    (property "Reference" "R503" (at 190.5 109.855 90)
+    (property "Reference" "R603" (at 190.5 109.855 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "10k" (at 190.5 112.395 90)
@@ -1100,8 +1079,8 @@
     (pin "2" (uuid 19b60fcf-c2a0-44e2-a59b-cfd3462c27c9))
     (instances
       (project "GAINS_PCB"
-        (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/faa977b4-6d34-4953-956b-9a5320061689"
-          (reference "R503") (unit 1)
+        (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/fbde3f6b-1fb2-47f7-a3b9-51b71038bda7"
+          (reference "R603") (unit 1)
         )
       )
     )
@@ -1110,7 +1089,7 @@
   (symbol (lib_id "power:GND") (at 147.955 121.92 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid ef1d8616-50bf-447f-8d17-7685d1074d09)
-    (property "Reference" "#PWR0504" (at 147.955 128.27 0)
+    (property "Reference" "#PWR0604" (at 147.955 128.27 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 147.955 126.365 0)
@@ -1125,8 +1104,8 @@
     (pin "1" (uuid f0a2773e-5c29-4fa5-b7a8-9cd29c5b38c0))
     (instances
       (project "GAINS_PCB"
-        (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/faa977b4-6d34-4953-956b-9a5320061689"
-          (reference "#PWR0504") (unit 1)
+        (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/fbde3f6b-1fb2-47f7-a3b9-51b71038bda7"
+          (reference "#PWR0604") (unit 1)
         )
       )
     )
@@ -1135,7 +1114,7 @@
   (symbol (lib_id "power:GND") (at 183.515 117.475 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid f967ae77-e00e-406c-b81c-c2a933657fef)
-    (property "Reference" "#PWR0506" (at 183.515 123.825 0)
+    (property "Reference" "#PWR0606" (at 183.515 123.825 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 183.515 121.92 0)
@@ -1150,8 +1129,8 @@
     (pin "1" (uuid ccaad596-4987-43d3-b659-6495a37d9c67))
     (instances
       (project "GAINS_PCB"
-        (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/faa977b4-6d34-4953-956b-9a5320061689"
-          (reference "#PWR0506") (unit 1)
+        (path "/9be8c1a8-5896-49bc-9c26-7c76e632e800/fbde3f6b-1fb2-47f7-a3b9-51b71038bda7"
+          (reference "#PWR0606") (unit 1)
         )
       )
     )
