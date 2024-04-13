@@ -56,12 +56,12 @@ void setup(void)
   Serial.println("Orientation Sensor Test"); Serial.println("");
 
   /* Initialise the sensor */
-  if (!bno.begin())
-  {
-    /* There was a problem detecting the BNO055 ... check your connections */
-    Serial.print("Ooops, no BNO055 detected ... Check your wiring or I2C ADDR!");
-    while (1);
-  }
+  // if (!bno.begin())
+  // {
+  //   /* There was a problem detecting the BNO055 ... check your connections */
+  //   Serial.print("Ooops, no BNO055 detected ... Check your wiring or I2C ADDR!");
+  //   while (1);
+  // }
 
   tempmon_init();
   tempmon_Start();
@@ -75,12 +75,12 @@ void loop(void)
 {
   //could add VECTOR_ACCELEROMETER, VECTOR_MAGNETOMETER,VECTOR_GRAVITY...
   sensors_event_t orientationData , angVelocityData , linearAccelData, magnetometerData, accelerometerData, gravityData;
-  bno.getEvent(&orientationData, Adafruit_BNO055::VECTOR_EULER);
-  bno.getEvent(&angVelocityData, Adafruit_BNO055::VECTOR_GYROSCOPE);
-  bno.getEvent(&linearAccelData, Adafruit_BNO055::VECTOR_LINEARACCEL);
-  bno.getEvent(&magnetometerData, Adafruit_BNO055::VECTOR_MAGNETOMETER);
-  bno.getEvent(&accelerometerData, Adafruit_BNO055::VECTOR_ACCELEROMETER);
-  bno.getEvent(&gravityData, Adafruit_BNO055::VECTOR_GRAVITY);
+  // bno.getEvent(&orientationData, Adafruit_BNO055::VECTOR_EULER);
+  // bno.getEvent(&angVelocityData, Adafruit_BNO055::VECTOR_GYROSCOPE);
+  // bno.getEvent(&linearAccelData, Adafruit_BNO055::VECTOR_LINEARACCEL);
+  // bno.getEvent(&magnetometerData, Adafruit_BNO055::VECTOR_MAGNETOMETER);
+  // bno.getEvent(&accelerometerData, Adafruit_BNO055::VECTOR_ACCELEROMETER);
+  // bno.getEvent(&gravityData, Adafruit_BNO055::VECTOR_GRAVITY);
 
   myFile = SD.open("accel_log_3.csv", FILE_WRITE);
   myFile.print(linearAccelData.acceleration.x);
