@@ -8,6 +8,7 @@ import matplotlib.animation as animation
 from matplotlib.ticker import ScalarFormatter
 from pyproj import Proj
 from IPython.display import HTML
+from kf import KF
 
 # %%
 # raw_data = np.loadtxt('/Users/pal/Desktop/senior_design/code/app/data/imu_and_gps_01.csv', delimiter=',', dtype=str)
