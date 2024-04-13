@@ -266,37 +266,57 @@ for utm_coord in utm_coords:
 my_df = pd.DataFrame(gps_coords)
 my_df.to_csv('/Users/pal/Desktop/senior_design/code/app/data/fused_run01.csv', index=False, header=False)
 
+lower_lat = np.mean(utm_xs) - 5
+upper_lat = np.mean(utm_xs) + 5
+
 fig, ax = plt.subplots(2, 1, sharex=True, sharey=False, figsize=(16,9))
 
-ax[0].xaxis.set_major_formatter(ScalarFormatter())
+import matplotlib.dates as mdates
+
+ax[0].xaxis.set_major_formatter(mdates.DateFormatter('%H:%M:%S'))
+ax[0].xaxis.set_major_locator(mdates.AutoDateLocator())
 ax[0].yaxis.set_major_formatter(ScalarFormatter())
-ax[0].set_title('Position')
+ax[0].set_title('Posistion')
 # ax[0].plot(time[:my_df.shape[0]], my_df.iloc[:,0], 'g')
 ax[0].plot(time, utm_xs, 'g')
 # ax[0].plot(my_df.iloc[:,1], my_df.iloc[:,0], 'o-')
-ax[0].ticklabel_format(useOffset=False, style='plain')
+# ax[0].ticklabel_format(useOffset=False, style='plain')
 ax[0].fill_between(
     time,
-    [float(mu[3][0] + 2*np.sqrt(cov[4,3])) for mu, cov in zip(mus,covs)],
-    [float(mu[3][0] - 2*np.sqrt(cov[4,3])) for mu, cov in zip(mus,covs)],
+    [float(mu[3][0] + 2*np.sqrt(cov[0,0])) for mu, cov in zip(mus,covs)],
+    [float(mu[3][0] - 2*np.sqrt(cov[0,0])) for mu, cov in zip(mus,covs)],
     facecolor='r',
-    alpha=0.2
+    alpha=0.5
     )
-ax[0].legend(['Latitude'])
 
-# ax[1].xaxis.set_major_formatter(ScalarFormatter())
-# ax[1].yaxis.set_major_formatter(ScalarFormatter())
+ax[0].set_xlim([19813.024306, 19813.027083])
+ax[0].set_ylim([4.4751e6, 4.47553e6])
+ax[0].legend(['Latitude', 'Error'])
+
+ax[1].xaxis.set_major_formatter(mdates.DateFormatter('%H:%M:%S'))
+ax[1].xaxis.set_major_locator(mdates.AutoDateLocator())
+ax[1].yaxis.set_major_formatter(ScalarFormatter(useOffset=5.07e5))
 # ax[1].set_title('Longitude')
-# ax[1].plot(time[:my_df.shape[0]], my_df.iloc[:,1], 'b')
+ax[1].plot(time, utm_ys, 'b')
 # ax[1].ticklabel_format(useOffset=False, style='plain')
-# # ax[1].fill_between(
-# #     TIME,
-# #     [mu[1] - 2*np.sqrt(cov[1,1]) for mu, cov in zip(mus,covs)],
-# #     [mu[1] + 2*np.sqrt(cov[1,1]) for mu, cov in zip(mus,covs)],
-# #     facecolor='r',
-# #     alpha=0.2
-# #     )
-# ax[1].legend(['Position'])
+ax[1].fill_between(
+    time,
+    [float(mu[0][0] + 2*np.sqrt(cov[3,3])) for mu, cov in zip(mus,covs)],
+    [float(mu[0][0] - 2*np.sqrt(cov[3,3])) for mu, cov in zip(mus,covs)],
+    facecolor='r',
+    alpha=0.5
+    )
+ax[1].set_ylim([5.074e5, 5.078e5])
+ax[1].legend(['Longitude', 'Error'])
+
+# Calculate average error for latitude plot
+avg_error_lat = np.mean([np.sqrt(cov[0,0]) for cov in covs])
+# Calculate average error for longitude plot
+avg_error_lon = np.mean([np.sqrt(cov[3,3]) for cov in covs])
+
+# Add labels to subplots
+ax[0].text(0.95, 0.05, f'Avg Error: {avg_error_lat:.2f}', transform=ax[0].transAxes, ha='right', va='bottom')
+ax[1].text(0.95, 0.05, f'Avg Error: {avg_error_lon:.2f}', transform=ax[1].transAxes, ha='right', va='bottom')
 
 plt.show()
 # %%
