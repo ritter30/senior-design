@@ -63,3 +63,9 @@ void KalmanFilter::update(const Eigen::VectorXd& y, double dt, const Eigen::Matr
   this->dt = dt;
   update(y);
 }
+
+// My additions
+
+inline Eigen::VectorXd KalmanFilter::getState() {
+  return x_hat;
+}
