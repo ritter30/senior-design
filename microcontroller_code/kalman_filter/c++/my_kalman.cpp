@@ -59,7 +59,7 @@ public:
   }
 
   const MatrixXd& cov() const { return _P; }
-  const VectorXd& mean() const { return _x; }
+  const VectorXd& mean() const { return _x; }chat
 
   VectorXd getStateVector() const { return _x; }
 
