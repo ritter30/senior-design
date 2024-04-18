@@ -38,7 +38,7 @@ int main() {
         Eigen::VectorXd z_n = Eigen::VectorXd::Zero(3);
         // Eigen::VectorXd z_n = getMeasurement();
 
-        std::string data[3] = {"GPS", "40.42", "-86,92"};
+        std::string data[3] = {"GPS", "40.42", "-86.92"};
 
         if (data[0] == "GPS") {
             H << 1, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -63,13 +63,13 @@ int main() {
             dt = 0.01;
         }
 
-        Eigen::VectorXd z_utm = ConvertToUTM(z_n);
+        // Eigen::VectorXd z_utm = ConvertToUTM(z_n);
 
         // Predict the next state
         kf.predict(dt);
 
         // Update the state based on the measurement
-        kf.update(z_utm, R, H);
+        // kf.update(z_utm, R, H);
 
         Eigen::VectorXd state = kf.getStateVector();
         for (int i = 0; i < state.size(); ++i) {
@@ -92,21 +92,32 @@ if (!context) {
     return Eigen::Vector3d::Zero();
 }
 
-PJ* proj = proj_create_crs_from_string(
-    context, "+proj=utm +zone=16 +ellps=WGS84 +datum=WGS84 +units=m +no_defs",
-    PJ_CRS_EPSG);
+PJ* proj = proj_create_crs_to_crs(
+    context, 
+    "EPSG:4326",
+    "+proj=utm +zone=16 +ellps=WGS84 +datum=WGS84 +units=m +no_defs",
+    NULL);
 if (!proj) {
     proj_context_destroy(context);
     // Handle error: proj_create_crs_from_string failed
     return Eigen::Vector3d::Zero();
 }
 
-PJ_COORD src_coord, dst_coord;
-src_coord.enu.e = z_n[0];
-src_coord.enu.n = z_n[1];
-src_coord.enu.u = z_n[2];
+// PJ_COORD src_coord, dst_coord;
+// src_coord.enu.e = z_n[0];
+// src_coord.enu.n = z_n[1];
+// src_coord.enu.u = z_n[2];
 
-int ret = proj_transform(PJ_CRS_WGS84, proj, PJ_FWD, &src_coord, &dst_coord);
+double lon = -86.92;
+double lat = 40.42;
+double alt = 0;
+
+int ret = proj_trans_generic(proj, PJ_FWD, 
+                             &lon, sizeof(lon), 1,
+                             &lat, sizeof(lat), 1,
+                             &alt, sizeof(alt), 1,
+                             NULL, sizeof(double), 0);
+
 proj_destroy(proj);
 proj_context_destroy(context);
 
@@ -115,7 +126,9 @@ if (ret != 0) {
     return Eigen::Vector3d::Zero();
 }
 
-Eigen::Vector3d z_utm(dst_coord.enu.e, dst_coord.enu.n, dst_coord.enu.u);
+// Eigen::Vector3d z_utm(dst_coord.enu.e, dst_coord.enu.n, dst_coord.enu.u);
 
-return z_utm;
+printf("UTM coordinates: (%f, %f)\n", lon, lat);
+
+return Eigen::Vector3d::Zero(3);
 }

@@ -64,7 +64,7 @@ public:
   VectorXd getStateVector() const { return _x; }
 
   MatrixXd getStateCovarianceSubmatrix(int row_start, int row_end, int col_start, int col_end) const {
-    return _P.block<row_end - row_start + 1, col_end - col_start + 1>(row_start, col_start);
+    return _P.block(row_start, row_end - row_start + 1, col_start, col_end - col_start + 1);
   }
 
 private:
