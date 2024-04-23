@@ -6,8 +6,9 @@ import tkinter as tk
 from tkinter import ttk
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
+from matplotlib.gridspec import GridSpec
 
-# from kf import KF
+from kf import KF
 from matplotlib.ticker import ScalarFormatter
 from pyproj import Proj
 from PIL import Image, ImageTk
@@ -355,6 +356,12 @@ ax.set_ylabel('Latitude (UTM m)')
 ax.set_title('Data Path in UTM Meters')
 
 # %%
+orient_data = orient_data.astype({
+    'yaw': np.float16,
+    'roll': np.float16,
+    'pitch': np.float16
+})
+# %%
 # Building Dashboard
 
 def update():
@@ -366,12 +373,13 @@ def update():
         # Read a row from the DataFrame
         rows = plotting_df.iloc[index: index + num_data_pts]
 
-        ax.clear()
+        ax[0].clear()
+        ax[1].clear()
 
-        ax.set_title('Live Plot of Position Using Kalman Filter')
-        ax.set_xlabel('Latitude')
-        ax.set_ylabel('Longitude')
-        time_text = ax.text(0.75, 0.95, '', transform=ax.transAxes)
+        ax[0].set_title('Live Plot of Position Using Kalman Filter')
+        ax[0].set_xlabel('Latitude')
+        ax[0].set_ylabel('Longitude')
+        time_text = ax[0].text(0.65, 0.95, '', transform=ax[0].transAxes)
         time_text.set_text('Time: {}'.format(rows.time.iloc[-1]))
 
         x_pos = rows.utm_easting
@@ -384,7 +392,23 @@ def update():
         # Assuming 'ax' is a matplotlib Axes object
         # ax.set_xlim([min(plotting_df.utm_easting), max(plotting_df.utm_easting)])
         # ax.set_ylim([min(plotting_df.utm_northing), max(plotting_df.utm_northing)])
-        ax.plot(x_pos, y_pos, 'o-')
+        ax[0].plot(x_pos, y_pos, 'o-')
+
+        avg_orientation = orient_data.iloc[index + num_data_pts - 10 : index + num_data_pts]['yaw'].mean()
+
+        avg_orientation = np.radians(avg_orientation)
+
+        avg_orientation_corrected = 3 * np.pi / 2 - avg_orientation
+
+        # print(avg_orientation_corrected)
+
+        u = -np.cos(avg_orientation_corrected)
+        v = np.sin(avg_orientation_corrected)
+
+        ax[1].quiver(0,0,u,v, angles='xy', scale_units='xy', scale=1)
+
+        ax[1].set_xlim(-1, 1)
+        ax[1].set_ylim(-1, 1)
 
         # Update the graph
         canvas.draw()
@@ -417,7 +441,11 @@ notebook.add(frame01, text='Accuracy Analysis')
 notebook.add(frame02, text='Live Plot')
 notebook.add(frame_gps, text='GPS Compare')
 
-fig, ax = plt.subplots(figsize=(16,9))
+fig, ax = plt.subplots(1, 2, figsize=(16,9))
+gs = GridSpec(1, 2, width_ratios=[3,1])
+
+ax[0] = fig.add_subplot(gs[0])
+ax[1] = fig.add_subplot(gs[1])
 
 # Scroll Bar
 canvas_frame02 = tk.Canvas(frame02)
