@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
 from matplotlib.gridspec import GridSpec
 
-from kf import KF
+# from kf import KF
 from matplotlib.ticker import ScalarFormatter
 from pyproj import Proj
 from PIL import Image, ImageTk
