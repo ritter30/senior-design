@@ -192,3 +192,5 @@ class KF:
 
 #     plt.show()
 # # %%
+
+# %%
