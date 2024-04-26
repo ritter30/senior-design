@@ -285,7 +285,7 @@ import matplotlib.dates as mdates
 ax[0].xaxis.set_major_formatter(mdates.DateFormatter('%H:%M:%S'))
 ax[0].xaxis.set_major_locator(mdates.AutoDateLocator())
 ax[0].yaxis.set_major_formatter(ScalarFormatter())
-ax[0].set_title('Posistion')
+ax[0].set_title('Position')
 # ax[0].plot(time[:my_df.shape[0]], my_df.iloc[:,0], 'g')
 ax[0].plot(time, utm_eastings, 'go', markersize=1)
 ax[0].plot(raw_pos_data.time, raw_pos_data.utm_eastings, 'bo', markersize=1)
